@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.12.3",
+    "json-formatter-js": "^0.3.0",
     "morgan": "^1.5.2",
     "path": "^0.11.14"
   }

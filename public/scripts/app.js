@@ -6,7 +6,8 @@
   angular.module('app', [
     'ngRoute',
     'AdalAngular',
-		'angular-loading-bar'
+		'angular-loading-bar',
+		'jsonFormatter'
   ])
 	.config(config);
   

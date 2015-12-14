@@ -15,6 +15,7 @@ app.use(morgan('dev'));
 
 // Set the front-end folder to serve public assets.
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/bower_components/json-formatter/dist'));
 
 // Set up our one route to the index.html file.
 app.get('*', function (req, res) {
