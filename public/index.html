@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="MSGraphConsoleApp">
 	<head>
 
 		<!-- Basic -->
@@ -56,9 +56,11 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.8.0/loading-bar.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.8.0/loading-bar.css">
 		<!-- App code. -->
+
 		<script src="scripts/config.js"></script>
 		<script src="scripts/app.js"></script>
 		<script src="controllers/mainController.js"></script>
+		<script src="directives/navitem.js"></script>
 		<link rel="stylesheet" href="styles.css">
 		<link rel="stylesheet" href="json-formatter.min.css">
 		
@@ -82,26 +84,7 @@
 				</section>
 				<div class="container">
 					<div class="row">
-						<div class="col-md-3">
-							<aside class="sidebar">
-								<h4 class="heading-primary">V1.0</h4>
-								<ul class="nav nav-list mb-xl">
-									<li>
-										<a href="#">Users</a>
-										<ul>
-											<li><a href="#">List Users</a></li>
-											<li><a href="#">Create User</a></li>
-											<li><a href="#">Get User</a></li>
-											<li><a href="#">Update User</a></li>
-											<li><a href="#">Delete User</a></li>
-										</ul>
-									</li>
-								</ul>
-							</aside>
-						</div>
-						<div class="col-md-9">
-							<div ng-view></div>
-						</div>
+						<div ng-view></div>
 					</div>
 				</div>
 			</div>

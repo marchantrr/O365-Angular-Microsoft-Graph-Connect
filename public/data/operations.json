@@ -1,37 +1,45 @@
 {
-	"operations":
-	[
-		{
-			"name":"List Users",
-			"url":"/users",
-			"method":"GET"
-			
-		},
-		{
-			"name":"Create User",
-			"url":"/users",
-			"method":"POST",
-			"data":{
-					"accountEnabled": true,
-					"city": "Sydney",
-					"companyName": "Readify"
+	"root":
+	{
+		"name":"MS Graph API Reference",
+		"childNodes":
+		[
+			{
+				"name":"v1.0",
+				"childNodes":
+				[
+					{
+						"name":"Users",
+						"childNodes":
+						[
+							{
+								"name":"User",
+								"childNodes":
+								[
+									{
+										"name":"List Users",
+										"url":"/users",
+										"method":"GET"
+									},
+									{
+										"name":"Create User",
+										"url":"/users",
+										"method":"POST",
+										"data":{
+												"accountEnabled": true,
+												"city": "Sydney",
+												"companyName": "Readify"
+												}
+									}
+								]
+							}
+						]
 					}
-		},
-		{
-			"name":"List Users",
-			"url":"/users/amrfouad@insightme.onmicrosoft.com",
-			"method":"GET"
-			
-		},
-		{
-			"name":"Update User Conteact Number",
-			"url":"/users/amrfouad@insightme.onmicrosoft.com",
-			"method":"PATCH",
-			"data":{
-				"city":"Melbourne"
+				]
 			}
-		}
-	]
+			
+		]
+	}
 }
 
 

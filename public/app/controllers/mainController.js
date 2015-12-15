@@ -4,13 +4,13 @@
 
 (function () {
   angular
-    .module('app')
+    .module('MSGraphConsoleApp')
     .controller('MainController', MainController);
     
   /**
    * The MainController code.
    */
-  function MainController($http, $log, adalAuthenticationService,$rootScope) {
+  function MainController($http, $log, adalAuthenticationService) {
     var vm = this;
     
     // Properties
@@ -20,7 +20,7 @@
     vm.emailAddressSent;
     vm.requestSuccess;
     vm.requestFinished; 
-    vm.operations;
+    vm.rootNode;
     
     // Methods
     vm.connect = connect;
@@ -56,7 +56,7 @@
        var request={method:'GET',url:baseUrl+'/data/operations.json'};
        $http(request).then(
          function(response){
-         vm.operations=response.data.operations;
+         vm.rootNode=response.data.root;
        },function(error){
          vm.operations={};
          $log.debug('Error loading operations..')
@@ -105,10 +105,6 @@
      function helperClick(){
        $log.debug('copying values from selected method..')
      };
-      $rootScope.$on('$routeChangeStart',function(arg1,arg2){
-        $log.debug(arg1);
-        $log.debug(arg2);
-      });   
   };
 })();
 

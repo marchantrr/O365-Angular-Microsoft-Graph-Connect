@@ -3,11 +3,11 @@
 */
 
 (function () {
-  angular.module('app', [
+  angular.module('MSGraphConsoleApp', [
     'ngRoute',
     'AdalAngular',
-		'angular-loading-bar',
-		'jsonFormatter'
+ 	'angular-loading-bar',
+	'jsonFormatter'
   ])
 	.config(config);
   
