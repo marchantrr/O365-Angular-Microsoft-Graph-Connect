@@ -1,0 +1,87 @@
+<!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See full license at the bottom of this file. -->
+<div class="ms-Grid-row">
+  <!-- App navigation bar markup. -->
+  <div class="ms-NavBar">
+    <ul class="ms-NavBar-items">
+      <li class="navbar-header">Office 365 Connect sample</li>
+      <li class="ms-NavBar-item ms-NavBar-item--right" ng-show="main.isConnected" ng-click="main.disconnect()"><i class="ms-Icon ms-Icon--x"></i> Disconnect</li>
+    </ul>
+  </div>
+
+  <!-- App main content markup. -->
+  <div >
+    <div ng-hide="main.isConnected">
+      <p class="ms-font-xl">Use the button below to connect to Office 365.</p>
+      <button class="ms-Button" ng-click="main.connect()">
+        <span class="ms-Button-label">Connect to Office 365</span>
+      </button>
+    </div>
+    <!--Only if connected-->
+      <!-- start the console here-->
+      <div ng-show="main.isConnected"> 
+        <div>
+          <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi, {{ main.userAlias }}!</h2>
+          <form name="msgraph" ng-submit="main.execute()">
+            <div>
+              <span>Method:</span>
+              <select ng-model="main.method" ng-init="main.method='GET'" required name="method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+              </select>
+            </div>
+            <div>
+              <span>Version:</span>
+              <select ng-model="main.version" ng-init="main.version='v1.0'" required name="version">
+                <option value="v1.0">1.0</option>
+                <option value="BETA">BETA</option>
+              </select>
+            </div>
+            <div>
+              <span>Relative Url:</span>
+              <input type="text" ng-model="main.url" required name="url"/>
+            </div>
+            <div ng-show="main.method=='POST'">
+              <span>Request Payload:</span>
+              <textarea ng-model="main.payload" required name="payload"/>
+            </div> 
+            <button type="submit" class="btn btn-default mr-xs mb-sm" ng-click="main.execute()" ng-disabled="msgraph.status">Execute</button>
+            <div ng-show="main.requestSuccess && main.requestFinished">
+              <p class="ms-font-m ms-fontColor-green">Successfully executed.</p>
+              <json-formatter json="main.responseData" open="2"></json-formatter>
+            </div>
+            <div ng-show="!main.requestSuccess && main.requestFinished">
+              <p class="ms-font-m ms-fontColor-redDark">Something went wrong, couldn't execute the request!</p>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!--
+O365-Angular-Microsoft-Graph-Connect, https://github.com/OfficeDev/O365-Angular-Microsoft-Graph-Connect
+ 
+Copyright (c) Microsoft Corporation
+All rights reserved. 
+ 
+MIT License:
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+ 
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.    
+  
+-->

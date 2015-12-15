@@ -2,30 +2,45 @@
 * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See full license at the bottom of this file.
 */
 
-var express = require('express');
-var app = express();
-var morgan = require('morgan');
-var path = require('path'); 
+(function () {
+  angular.module('app', [
+    'ngRoute',
+    'AdalAngular',
+		'angular-loading-bar',
+		'jsonFormatter'
+  ])
+	.config(config);
+  
+  // Configure the routes.
+	function config($routeProvider, $httpProvider, adalAuthenticationServiceProvider, cfpLoadingBarProvider) {
+		$routeProvider
+			.when('/', {
+				templateUrl: 'views/main.html',
+				controller: 'MainController',
+				controllerAs: 'main'
+			})
 
-// Initialize variables. 
-var port = process.env.PORT || 8080; 
-
-// Configure morgan module to log all requests.
-app.use(morgan('dev')); 
-
-// Set the front-end folder to serve public assets.
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/public/app'));
-app.use(express.static(__dirname + '/bower_components/json-formatter/dist'));
-
-// Set up our one route to the index.html file.
-app.get('*', function (req, res) {
-	res.sendFile(path.join(__dirname + '/public/index.html'));
-});
-
-// Start the server.  
-app.listen(port);
-console.log('Listening on port ' + port + '...'); 
+			.otherwise({
+				redirectTo: '/'
+			});
+	
+		// Initialize the ADAL provider with your clientID (found in the Azure Management Portal) and the API URL (to enable CORS requests).
+		adalAuthenticationServiceProvider.init(
+			{
+				clientId: clientId,
+				// The endpoints here are resources for cross origin requests.
+				endpoints: {
+					'https://graph.microsoft.com': 'https://graph.microsoft.com'
+				}
+			},
+			$httpProvider
+			);
+			
+		// Remove spinner from loading bar.
+    cfpLoadingBarProvider.includeSpinner = false;
+	};
+	 
+})();
 
 // *********************************************************
 //
