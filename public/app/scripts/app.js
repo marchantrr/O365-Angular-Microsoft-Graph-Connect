@@ -27,6 +27,7 @@
 		// Initialize the ADAL provider with your clientID (found in the Azure Management Portal) and the API URL (to enable CORS requests).
 		adalAuthenticationServiceProvider.init(
 			{
+				//tenant:tenantId,
 				clientId: clientId,
 				// The endpoints here are resources for cross origin requests.
 				endpoints: {
