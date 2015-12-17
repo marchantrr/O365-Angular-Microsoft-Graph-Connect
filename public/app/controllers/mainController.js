@@ -10,7 +10,7 @@
   /**
    * The MainController code.
    */
-  function MainController($http, $log, adalAuthenticationService) {
+  function MainController($http, $log, adalAuthenticationService,$rootScope) {
     var vm = this;
     
     // Properties
@@ -69,6 +69,7 @@
 		 */
     function connect() {
       $log.debug('Connecting to Office 365...');
+      adalAuthenticationService.config.clientId=vm.clientId;
       adalAuthenticationService.login();
     };
 		
@@ -102,9 +103,10 @@
     };
     /**
      *  */
-     function helperClick(){
-       $log.debug('copying values from selected method..')
-     };
+     $rootScope.on('node:clicked',function(e,data){
+        $log.debug(e);
+        $log.debug(data);    
+     });
   };
 })();
 

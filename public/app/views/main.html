@@ -1,7 +1,7 @@
 <div class="col-md-3">
   <!--side menu-->
   <aside class="sidebar">
-    <ul class="nav nav-list mb-xl">
+    <ul class="nav nav-list mb-xl" ng-if="main.isConnected">
       <nav-item node='main.rootNode' template='templates/navitem.html'></nav-item>
     </ul>
   </aside>
@@ -13,7 +13,7 @@
     <!-- App navigation bar markup. -->
     <div class="ms-NavBar">
       <ul class="ms-NavBar-items">
-        <li class="navbar-header">Office 365 Connect sample</li>
+        <li class="navbar-header">You are now Connected</li>
         <li class="ms-NavBar-item ms-NavBar-item--right" ng-show="main.isConnected" ng-click="main.disconnect()"><i class="ms-Icon ms-Icon--x"></i> Disconnect</li>
       </ul>
     </div>
@@ -21,6 +21,11 @@
     <div >
       <div ng-hide="main.isConnected">
         <p class="ms-font-xl">Use the button below to connect to Office 365.</p>
+        <p class="ms-font-l">We are using Our Azure AD App ,Which have full access to Graph APIs if you want to use yours add your app client Id below</p>
+        <label class="col-md-3 control-label">Client ID</label>
+        <div class="col-md-9">
+          <input class="form-control col-md-12" ng-model="main.clientId" ng-init="main.clientId='b65937cd-73fc-41af-8ba2-7f9415b5ad57'"/>
+        </div>
         <button class="ms-Button" ng-click="main.connect()">
           <span class="ms-Button-label">Connect to Office 365</span>
         </button>
@@ -29,29 +34,37 @@
         <!-- start the console here-->
         <div ng-show="main.isConnected"> 
           <div>
-            <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi, {{ main.userAlias }}!</h2>
+            <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi , {{ main.userAlias }}!</h2>
             <form name="msgraph" ng-submit="main.execute()">
               <div>
-                <span>Method:</span>
-                <select ng-model="main.method" ng-init="main.method='GET'" required name="method">
-                  <option value="GET">GET</option>
-                  <option value="POST">POST</option>
-                </select>
+                <label class="col-md-3 control-label">Method</label>
+                  <div class="col-md-9">
+                    <select ng-model="main.method" ng-init="main.method='GET'" required name="method"  class="form-control populate">
+                      <option value="GET">GET</option>
+                      <option value="POST">POST</option>
+                    </select>
+                  </div>
               </div>
               <div>
-                <span>Version:</span>
-                <select ng-model="main.version" ng-init="main.version='v1.0'" required name="version">
-                  <option value="v1.0">1.0</option>
-                  <option value="BETA">BETA</option>
-                </select>
+               <label class="col-md-3 control-label">version</label>
+                <div class="col-md-9">
+                  <select ng-model="main.version" ng-init="main.version='v1.0'" required name="version" class="form-control populate">
+                    <option value="v1.0">1.0</option>
+                    <option value="BETA">BETA</option>
+                  </select>
+                </div>
               </div>
               <div>
-                <span>Relative Url:</span>
-                <input type="text" ng-model="main.url" required name="url"/>
+                <label class="col-md-3 control-label">Relative Url:</label>
+                <div class="col-md-9">
+                  <input type="text" ng-model="main.url" required name="url" class="form-control"/>
+                </div>
               </div>
               <div ng-if="main.method=='POST'">
-                <span>Request Payload:</span>
-                <textarea ng-model="main.payload" required name="payload"/>
+                <label class="col-md-3 control-label">Request Payload:</label>
+                <div class="col-md-9">
+                  <textarea ng-model="main.payload" required name="payload" class="form-control"/>
+                </div>
               </div> 
               <button type="submit" class="btn btn-default mr-xs mb-sm" ng-disabled="msgraph.status">Execute</button>
               <div ng-show="main.requestSuccess && main.requestFinished">
