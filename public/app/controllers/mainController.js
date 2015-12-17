@@ -26,7 +26,6 @@
     vm.connect = connect;
     vm.disconnect = disconnect;
     vm.execute = execute;
-    vm.helperClick=helperClick;
     /////////////////////////////////////////
     // End of exposed properties and methods.
     
@@ -101,11 +100,19 @@
           vm.requestFinished = true;
         });
     };
-    /**
-     *  */
-     $rootScope.on('node:clicked',function(e,data){
-        $log.debug(e);
-        $log.debug(data);    
+     $rootScope.$on('node:clicked',function(e,data){
+       if(data.node.method){
+          vm.method=data.node.method;
+       }
+       if(data.node.method){
+          vm.url=data.node.url;
+       }
+       if(data.node.version){
+          vm.version=data.node.version;
+       }
+       if(data.node.data){
+          vm.payload=JSON.stringify(data.node.data);
+       }
      });
   };
 })();

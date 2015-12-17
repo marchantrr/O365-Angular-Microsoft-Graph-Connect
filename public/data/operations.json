@@ -19,12 +19,14 @@
 									{
 										"name":"List Users",
 										"url":"/users",
-										"method":"GET"
+										"method":"GET",
+										"version":"v1.0"
 									},
 									{
 										"name":"Create User",
 										"url":"/users",
-										"method":"POST",
+										"method":"POST",										
+										"version":"v1.0",
 										"data":{
 												"accountEnabled": true,
 												"city": "Sydney",

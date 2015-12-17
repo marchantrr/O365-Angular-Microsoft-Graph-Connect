@@ -1,6 +1,6 @@
 (function () {
     angular.module('MSGraphConsoleApp')
-        .directive('navItem',['$templateCache','$compile','$http','$log',function($templateCache,$compile,$http,$log,$rootScope){
+        .directive('navItem',['$templateCache','$compile','$http','$log','$rootScope',function($templateCache,$compile,$http,$log,$rootScope){
             var definition = {
                 restrict: 'E',
                 replace: true,
@@ -29,8 +29,6 @@
                     }
                     else
                     {
-                        //it's leaf node fill out the values
-                        $log.debug(scope.node.name +"is clicked");
                         $rootScope.$emit('node:clicked',{node:scope.node});
                     }
                 };
