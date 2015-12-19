@@ -1,5 +1,5 @@
 
-var clientId = 'b65937cd-73fc-41af-8ba2-7f9415b5ad57';
+var clientId = 'e5f9c6ef-0397-460b-b883-3f361a08544b';
 var graphUrl='https://graph.microsoft.com/';
-var baseUrl='http://localhost:8080/';
-var tenantId='51ef0b43-0b60-47a7-9872-e7c929542973';
+var baseUrl='http://microsoftgraph.azurewebsites.net';
+var tenantId='61e6eeb3-5fd7-4aaa-ae3c-61e8deb09b79';
